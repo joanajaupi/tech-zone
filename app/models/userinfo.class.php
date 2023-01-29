@@ -1,5 +1,5 @@
 <?php 
-class User
+class userInfo
 {
     public $error = "";
     public function signup($POST){
@@ -10,7 +10,7 @@ class User
         $confirmPassword = trim($POST["confirm-password"]);
         $data['email'] =trim($POST["email"]);
         $data['phone'] = trim($POST["phone"]);
-        $data['role'] = 0;
+        $data['admin'] = 0;
 
         if(empty($data['email']) || !preg_match("/^[a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]+$/", $data['email'])){
             $this->error .="Please enter valid email <br>";
@@ -27,11 +27,8 @@ class User
         //if no errors
         if($this->error == ""){
             //save to db
-            $data['id'] = uniqid();
-            //0 for customers 1 for admins
-            $data['registerDate'] = date("Y-m-d H:i:s");
             $data['password']= password_hash($password, PASSWORD_DEFAULT);
-            $query = "INSERT INTO users (id, name, surname, password, email,role, phone,registerDate) values (:id, :name, :surname, :password, :email, :role, :phone, :registerDate)";
+            $query = "INSERT INTO userInfo (name, surname, password, email,admin, phone) values (:name, :surname, :password, :email, :admin, :phone)";
             $db = Database::getInstance();
             $result = $db->write($query, $data);
             if($result){

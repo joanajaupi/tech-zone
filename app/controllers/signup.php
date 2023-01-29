@@ -6,9 +6,9 @@
             $data['page_title'] = "signup";
             if($_SERVER['REQUEST_METHOD']=='POST'){
 
-                
+
                 show($_POST);
-                $user = $this->load_model("User");
+                $user = $this->load_model("userInfo");
                 $user->signup($_POST);
             }
             $this->view("signup", $data);
