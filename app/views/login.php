@@ -1,5 +1,5 @@
 <?php $this->view("header", $data); ?>
-<link rel="stylesheet" href="../public/assets/css/login.css">
+<link rel="stylesheet" href="<?=ROOT?>/assets/css/login.css">
 </head>
 <body>
     <div class="container">
@@ -21,7 +21,7 @@
   </div>
   <button type="submit" class="btn btn-primary" name="login">Login</button>
   <div>
-   <p style="margin-top: 20px">Don't have an account yet? <a href="signup.php" id="register-link">Register here</a></p>
+   <p style="margin-top: 20px">Don't have an account yet? <a href="<?=ROOT?>signup" id="register-link">Register here</a></p>
     </div>
 </form>
         
