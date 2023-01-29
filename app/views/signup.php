@@ -9,7 +9,7 @@
                 <img src="images/user.png" alt="Avatar" class="avatar">
                 <h3 style="text-align: center">Sign Up</h3>
             </div>
-            <form>
+            <form method="POST" action="#">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name"required>
