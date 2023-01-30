@@ -3,10 +3,11 @@
     </head>
     <body>
     <div class="container">
-        <div class="signup">
+    <?php check_error()?>
+        <div class="signup">   
         <div class="mb-3">
             <div>
-                <img src="images/user.png" alt="Avatar" class="avatar">
+                <img src="<?=ROOT?>assets/images/user.png" alt="Avatar" class="avatar">
                 <h3 style="text-align: center">Sign Up</h3>
             </div>
             <form method="POST" action="#">
