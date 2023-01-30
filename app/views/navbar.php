@@ -28,12 +28,23 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <?php if(!isset($data['user_data'])): ?>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?=ROOT?>login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?=ROOT?>signup">Signup</a>
                 </li>
+                <?php endif; ?>
+                <?php if(isset($data['user_data'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?=ROOT?>profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?=ROOT?>logout">Logout</a>
+                    </li>
+                <?php endif; ?>
+
             </ul> 
             </form>
         </div>

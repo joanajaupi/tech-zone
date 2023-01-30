@@ -68,7 +68,7 @@ class userInfo
             $this->error .="Please enter valid email <br>";
         }
         if($this->error == ""){
-                $query = "SELECT password from userInfo WHERE email=:email";
+                $query = "SELECT userID, password from userInfo WHERE email=:email";
                 $array["email"] = $logindata["email"];
                 $result = $db->read($query, $array);
                 show($result);
@@ -76,7 +76,7 @@ class userInfo
                     $hashed_password = $result[0]->password;
                 }
                 if(password_verify($logindata["password"], $hashed_password)){
-                    $_SESSION['id'] = $result[0]->id;
+                    $_SESSION['userID'] = $result[0]->userID;
                     header("Location:". ROOT . "home");
                     die;
                 }
@@ -89,4 +89,27 @@ class userInfo
 
     }
 
+    //check if user is logged in
+    public function check_login() 
+    {
+        if(isset($_SESSION['userID'])){
+            $arr['userID'] = $_SESSION['userID'];
+            $query ="select * from userInfo where userID =:userID limit 1";
+            $db = Database::getInstance();
+            $result = $db->read($query, $arr);
+            if(is_array($result))
+            {
+                return $result[0];
+            }
+        }
+        return false;
+    }
+    public function logout(){
+        if(isset($_SESSION['userID'])){
+            unset($_SESSION['userID']);
+
+        }
+        header("Location:". ROOT . "home");
+        die;
+    }
 }
