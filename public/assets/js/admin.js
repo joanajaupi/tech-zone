@@ -5,7 +5,6 @@ const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
 const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
 const switchInput = document.querySelector(".switch input");
 const switchLabel = document.querySelector(".switch label");
-const switchLabelText = switchLabel.querySelector("span:last-child");
 const collapsedClass = "collapsed";
 const lightModeClass = "light-mode";
 

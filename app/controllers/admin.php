@@ -12,6 +12,12 @@
             $data['page_title'] = "Dashboard";
             $this->view("admin", $data);
 
-        }   
+        }
+
+        public function categories()
+        {
+            $data['page_title'] = "Dashboard";
+            $this->view("categories", $data);
+        }
 
     }
