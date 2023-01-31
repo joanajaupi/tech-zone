@@ -4,41 +4,32 @@
 <body>
 
     <!--carousel-->
-    
-    <div id="mainCarousel" class="carousel slide" data-interval="4000">
-                <div class="carousel-indicators">
-                  <?php $result= json_decode(json_encode($data['carousel']), true); ?>
-                    <?php foreach($result as $key => $value): ?>
-                        <?php if($key === 0): ?>
-                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="<?=$key?>" class="active" aria-current="true" aria-label="Slide <?=$key?>"></button>
-                          <?php else: ?>
-                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="<?=$key?>" aria-label="Slide <?=$key?>"></button>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-                <div class="carousel-inner">
-                  <?php $result= json_decode(json_encode($data['carousel']), true); ?>
-                    <?php foreach($result as $key => $value): ?>
-                        <?php if($key === 0): ?>
-                            <div class="carousel-item active"> 
-                              <img src="<?=ROOT?>assets/images/<?=$value['fileName']?>" class ="d-block w-100">
-                            </div>
-                          <?php else: ?>
-                            <div class="carousel-item">
-                               <img src="<?=ROOT?>assets/images/<?=$value['fileName']?>" class="d-block w-100">
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                    <a class="carousel-control-prev" href="#mainCarousel" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#mainCarousel" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                        </a>                   
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/iphonebanner.jpg" alt="First slide">
             </div>
-
+            <div class="carousel-item">
+                <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/imac-banner.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/3.jpg" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+<?php $this->view("footer", $data); ?>
 </body>
 
 </html>

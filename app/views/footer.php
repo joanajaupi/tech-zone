@@ -12,7 +12,7 @@
                 <li class="list-inline-item"><a href="#">Services</a></li>
                 <li class="list-inline-item"><a href="#">About</a></li>
                 <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Admin Login</a></li>
+                <li class="list-inline-item"><a href="<?=ROOT?>login">Admin Login</a></li>
             </ul>
             <p class="copyright">Tech Zone © 2023</p>
         </footer>

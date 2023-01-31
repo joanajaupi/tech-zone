@@ -68,40 +68,73 @@ class userInfo
             $this->error .= "Please enter valid email <br>";
         }
         if ($this->error == "") {
-            $query = "SELECT userID, password from userInfo WHERE email=:email";
+            $query = "SELECT userID, password, admin from userInfo WHERE email=:email";
             $array["email"] = $logindata["email"];
             $result = $db->read($query, $array);
-            show($result);
             if (is_array($result)) {
                 $hashed_password = $result[0]->password;
-            }
+           
             if (password_verify($logindata["password"], $hashed_password)) {
                 $_SESSION['userID'] = $result[0]->userID;
-                header("Location:" . ROOT . "home");
-                die;
+                show($result);
+                if ($result[0]->admin == 1) {
+                    header("Location:" . ROOT . "admin");
+                    die;
+                } else {
+                    header("Location:" . ROOT . "home");
+                    die;
+                }
             }
+            echo "wrong password or email";
+        } 
+        echo "wrong email";
         }
         $_SESSION["error"] = $this->error;
         check_error();
     }
+
     public function get_user($url)
     {
     }
 
+  
     //check if user is logged in
-    public function check_login()
-    {
-        if (isset($_SESSION['userID'])) {
-            $arr['userID'] = $_SESSION['userID'];
-            $query = "select * from userInfo where userID =:userID limit 1";
-            $db = Database::getInstance();
-            $result = $db->read($query, $arr);
-            if (is_array($result)) {
-                return $result[0];
+    public function check_login($redirect = false, $allowed = array()){
+        $db = Database::getInstance();
+        $arr1 = array();
+        if(count($allowed) > 0)
+        {
+            $a['userID'] = $_SESSION['userID'];
+            $query = "SELECT admin from userInfo WHERE userID=:userID;";
+            $result = $db->read($query, $a);
+            show($result);
+                    if(is_array($result)){
+                        $result = $result[0];
+                        var_dump($result);
+                        if(in_array($result->admin, $allowed)){
+                            return $result;
+                        }
+                    }
+                }
+        else
+        {
+            if(isset($_SESSION['userID'])){
+                $arr = array();
+                $arr['userID'] = $_SESSION['userID'];
+                $query = "SELECT * from userInfo WHERE userID=:userID limit 1";
+                $result = $db->read($query, $arr);
+                if(is_array($result)){
+                    return $result[0];
+                }
+            }
+            if($redirect){
+                header("Location:" . ROOT . "login");
+                die;
             }
         }
+       
         return false;
-    }
+}
     public function logout()
     {
         if (isset($_SESSION['userID'])) {
