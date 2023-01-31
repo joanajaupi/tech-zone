@@ -39,26 +39,12 @@
 
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">CategoryID</th>
       <th scope="col">CategoryName</th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>
-        <button type="button" class="btn btn-success">Enabled</button>
-      </td>
-      <td>
-      <button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
-      <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-      </td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -97,7 +83,7 @@ function collect_data(e){
 function send_data(data = {})
 {
   var ajax = new XMLHttpRequest();
-  ajax.addEventListener("readystatechange", function(){
+  ajax.addEventListener("load", function(){
     if(this.readyState == 4 && this.status == 200){
       handle_result(ajax.responseText);
     }
@@ -108,8 +94,23 @@ function send_data(data = {})
 
 
 function handle_result(result){
-  alert(result)
-  show_add_new();
+  console.log(result);
+  if(result!=""){
+    var result = JSON.parse(result);
+    if(typeof result.message_type != "undefined"){
+        if(result.message_type == "success"){
+          alert("Category added successfully");
+          show_add_new();
+          var category_input = document.querySelector("#category-input");
+          category_input.value = "";
+          var table = document.querySelector(".table-group-divider");
+          table.innerHTML = result.data;
+     
+  }else{
+    alert(result.message);
+  }
+}
+  }
 }
 </script>
 </body>

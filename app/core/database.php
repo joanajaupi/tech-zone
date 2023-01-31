@@ -12,7 +12,9 @@ class Database
             echo "Connection failed: " . $e->getMessage();
         }
     }
-
+    public static function instance(){
+        return $instance = new self();
+    }
     public static function getInstance(){
         if(self::$conn){
             return self::$conn;
