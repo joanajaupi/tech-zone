@@ -1,16 +1,14 @@
 <?php
 class Category{
-
-    
     public function create($data){
-       $db = Database::get_instance();
+       $db = Database::getInstance();
        $arr['category'] = ucwords($data->data);
-       if(!preg_match("/^[a-zA-Z]$/", $arr['category'], $match)){
+       if(!preg_match("/^[a-zA-Z]+$/", $arr['category'])){
            $_SESSION['error'] = "Category name must be alphabets only";
        }
-       if(_SESSION['error'] != ""){
+       if(isset($_SESSION['error']) || $_SESSION['error'] != ""){
             $query = "INSERT INTO category (categoryName) VALUES (:category)";
-            $result = db->write($query, $arr);
+            $result = $db->write($query, $arr);
             if($result){return true;}
        }
         return false;

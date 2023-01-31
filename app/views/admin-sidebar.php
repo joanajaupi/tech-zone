@@ -6,7 +6,7 @@
     <div class="row d-flex d-md-block flex-nowrap wrapper">
         <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
             <div class="list-group border-0 text-center text-md-left">
-            <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Dashboard</span></a>
+            <a href="<?=ROOT?>admin" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Dashboard</span></a>
                 <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Categories</span></a>
                 <div class="collapse" id="menu3" data-parent="#sidebar">
                 <a href="<?=ROOT?>admin/categories" class="list-group-item" data-parent="#menu3">view categories</a>
