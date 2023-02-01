@@ -42,6 +42,8 @@
       <th scope="col">CategoryID</th>
       <th scope="col">CategoryName</th>
       <th scope="col">Action</th>
+      <tbody class="table-group-divider">
+        <?php echo $data['cats']; ?>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -102,9 +104,7 @@ function handle_result(result){
           alert("Category added successfully");
           show_add_new();
           var category_input = document.querySelector("#category-input");
-          category_input.value = "";
-          var table = document.querySelector(".table-group-divider");
-          table.innerHTML = result.data;
+          category_input.value = "";          
      
   }else{
     alert(result.message);

@@ -23,7 +23,7 @@ class Category{
     public function getCategories(){
 
         $db = Database::instance();
-        $query = "SELECT * FROM category";
+        $query = "SELECT * FROM category ORDER BY categoryID ASC";
         $result = $db->read($query);
         if(is_array($result)){
             return $result;

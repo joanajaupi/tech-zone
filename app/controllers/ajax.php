@@ -19,10 +19,7 @@
                         $arr['message'] = "Category created successfully";
                         $arr['message_type'] = "success";
                         $arr['data'] = $data->data;
-                        $cats = $category->getCategories();
-                         $arr['data'] = $category->make_table($cats);
-                        
-
+                       
                         echo json_encode($arr);
                     }
             }
