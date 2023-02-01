@@ -19,7 +19,11 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
+
                     <ul class="dropdown-menu" style="max-height: 400px; overflow-y: auto;">
+                    <?php foreach($data['categories'] as $category): ?>
+                        <li><a class="dropdown-item" href="<?=ROOT?>category/<?=$category->categoryID?>"><?=$category->categoryName?></a></li>
+                    <?php endforeach; ?>
                     </ul>
                 </li>
             </ul>
