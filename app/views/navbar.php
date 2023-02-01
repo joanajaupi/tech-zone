@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="all">All Products</a>
+                    <a class="nav-link active" aria-current="page" href="<?= ROOT ?>allProducts">All Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Deals and offers</a>
@@ -21,9 +21,9 @@
                     </a>
 
                     <ul class="dropdown-menu" style="max-height: 400px; overflow-y: auto;">
-                    <?php foreach($data['categories'] as $category): ?>
-                        <li><a class="dropdown-item" href="<?=ROOT?>category/<?=$category->categoryID?>"><?=$category->categoryName?></a></li>
-                    <?php endforeach; ?>
+                        <?php foreach ($data['categories'] as $category) : ?>
+                            <li><a class="dropdown-item" href="<?= ROOT ?>category/<?= $category->categoryID ?>"><?= $category->categoryName ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
             </ul>
@@ -32,24 +32,24 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <?php if(!isset($data['user_data'])): ?>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?=ROOT?>login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?=ROOT?>signup">Signup</a>
-                </li>
-                <?php endif; ?>
-                <?php if(isset($data['user_data'])): ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?=ROOT?>profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?=ROOT?>logout">Logout</a>
-                    </li>
-                <?php endif; ?>
+                    <?php if (!isset($data['user_data'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= ROOT ?>login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= ROOT ?>signup">Signup</a>
+                        </li>
+                    <?php endif; ?>
+                    <?php if (isset($data['user_data'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= ROOT ?>profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= ROOT ?>logout">Logout</a>
+                        </li>
+                    <?php endif; ?>
 
-            </ul> 
+                </ul>
             </form>
         </div>
     </div>
