@@ -8,7 +8,7 @@
 <?php foreach ($data['products'] as $d) : ?>
     <div class='col'>
         <div class='card' style='height: 400px'>
-            <img class='card-img-top' src='images/products/" + d.productImage + "'style='height: 180px; width: 180px' alt='Card image cap'>
+            <img class='card-img-top' src="<?php echo ROOT; ?>assets/images/<?=$d->productImage?>" style='height: 180px; width: 180px' alt='Card image cap'>
             <div class='card-body'>
                 <h5 class='card-title'><?= $d->productName ?></h5>
                 <p class='card-text'><?= $d->productDescription ?></p>
