@@ -1,7 +1,3 @@
-"SELECT * FROM product;";
-
-
-
 <?php
 class Products
 {
