@@ -1,6 +1,4 @@
-<?php $this->view("header", $data); ?>
-<style>
-    #name{
+#name{
     font-size: 1.5em;
     font-weight: bold;
     color: #000;
@@ -27,18 +25,3 @@
     height: 15vw;
     object-fit: cover;
 }
-.card-body {
-    padding: 0.5rem;
-}
-</style>
-<?php $this->view("navbar", $data); ?>
-
-<!--Display all products-->
-<div class='container text-center'> 
-    <div class='row align-items-start' id="products">
-</div>
-
-<?php $this->view("footer", $data); ?>
-<script src="<?=ROOT?>assets/js/allproducts.js"></script>
-</body>
-</html>

@@ -114,6 +114,7 @@
   .team-member-image {
     max-width: 100%;
   }
+
   
   @media (max-width: 500px) {
     .card-container {

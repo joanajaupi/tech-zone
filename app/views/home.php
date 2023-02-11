@@ -44,10 +44,10 @@
       <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
         <div class="card">
           <div class="team-image-wrapper">
-            <img class="team-member-image" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert1.png">
+            <img class="team-member-image" src="<?=ROOT?>assets/images/108238766.jpeg">
           </div>
           <p class="text-blk name">
-            Davis George
+            Joana Jaupi
           </p>
           <p class="text-blk position">
             CEO
@@ -56,11 +56,11 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
           <div class="social-icons">
-            <a href="https://www.twitter.com" target="_blank">
-              <img class="twitter-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/Icon.svg">
+            <a href="https://www.github.com/joanajaupi">
+              <i class="fa fa-github"></i>
             </a>
-            <a href="https://www.facebook.com" target="_blank">
-              <img class="facebook-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/Icon-1.svg">
+            <a href="https://www.linkedin.com/in/joana-jaupi/" target="_blank">
+              <i class="fa fa-linkedin"></i>
             </a>
           </div>
         </div>
@@ -68,10 +68,10 @@
       <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
         <div class="card">
           <div class="team-image-wrapper">
-            <img class="team-member-image" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert2.png">
+            <img class="team-member-image" src="<?=ROOT?>assets/images/105079235.jpeg">
           </div>
           <p class="text-blk name">
-            Davis George
+            Kevin Tenolli
           </p>
           <p class="text-blk position">
             CEO
@@ -80,11 +80,11 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
           <div class="social-icons">
-            <a href="https://www.twitter.com" target="_blank">
-              <img class="twitter-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/Icon.svg">
+            <a href="https://github.com/ProfessorGustavi">
+              <i class="fa fa-github"></i>
             </a>
             <a href="https://www.facebook.com" target="_blank">
-              <img class="facebook-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/Icon-1.svg">
+              <i class="fa fa-linkedin"></i>
             </a>
           </div>
         </div>

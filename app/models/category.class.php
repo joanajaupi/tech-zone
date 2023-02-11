@@ -1,16 +1,24 @@
 <?php
 class Category{
+
     public function create($data){
        $db = Database::getInstance();
-       $arr['category'] = ucwords($data->data);
+       $arr['category'] = ucwords($data->categoryName);
        if(!preg_match("/^[a-zA-Z]+$/", $arr['category'])){
            $_SESSION['error'] = "Category name must be alphabets only";
        }
-       if(isset($_SESSION['error']) || $_SESSION['error'] != ""){
+       //check if category already exists
+        $query = "SELECT * FROM category WHERE categoryName = :category";
+            $result = $db->read($query, $arr);
+            if(is_array($result)){
+                $_SESSION['error'] = "Category already exists";
+            }
+         if(!isset($_SESSION['error'])){
             $query = "INSERT INTO category (categoryName) VALUES (:category)";
             $result = $db->write($query, $arr);
             if($result){return true;}
-       }
+            return false;
+         }
         return false;
        
     }
@@ -18,6 +26,12 @@ class Category{
        
     }
     public function delete($data){
+        $db = Database::getInstance();
+        $arr['id'] = $data->categoryID;
+        $query = "DELETE FROM category WHERE categoryID = :id";
+        $result = $db->write($query, $arr);
+        if($result){return true;}
+        return false;
        
     }
     public function getCategories(){
@@ -32,24 +46,5 @@ class Category{
        
     }
 
-    public function make_table($cats){
-        $result = "";
-        if(is_array($cats)){
-            foreach ($cats as $cat_row){
-                $result.= "<tr>";
-
-                $result.= '
-                <td>'.$cat_row->categoryID.'</td>
-                <td>'.$cat_row->categoryName . '</td>
-                <td>
-                <button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                </td>
-              </tr>';
-
-            }
-
-        }
-        return $result;
-    }
+   
 }

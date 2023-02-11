@@ -8,21 +8,29 @@ class allProducts extends Controller
         if (!is_bool($user_data)) {
             $data['user_data'] = $user_data;
         }
-        $products = $this->load_model("productinfo");
-        $products = $products->get_products();
-        $data['products'] = $products;
+        //te nav bar
+        $category = $this->load_model("Category");
+        $cats = $category->getCategories();
+        $data['categories'] = $cats;
         $data['page_title'] = "All Products";
         $this->view("allproducts", $data);
     }
 
-    public function get_products()
+    public function fetchAll()
     {
-        $db = Database::instance();
-        $query = "SELECT * FROM product;";
-        $result = $db->read($query);
-        //rest api
-        $data = array();
-        $data['products'] = $result;
+        $products = $this->load_model("productinfo");
+        $products = $products->get_products();
+        $data['products'] = $products;
+        $data['message'] = "Products fetched successfully";
+        echo json_encode($data);
+    }
+
+    public function fetchByCategory($category)
+    {
+        $products = $this->load_model("productinfo");
+        $products = $products->getByCategory($category);
+        $data['products'] = $products;
+        $data['message'] = "Products fetched successfully";
         echo json_encode($data);
     }
 }

@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand">Tech Zone</a>
+        <a class="navbar-brand" style="color: #fff">Tech Zone</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,7 +22,7 @@
 
                     <ul class="dropdown-menu" style="max-height: 400px; overflow-y: auto;">
                         <?php foreach ($data['categories'] as $category) : ?>
-                            <li><a class="dropdown-item" href="<?= ROOT ?>category/<?= $category->categoryID ?>"><?= $category->categoryName ?></a></li>
+                            <li><a class="dropdown-item" href="<?= ROOT ?>allproducts/<?= $category->categoryID ?>"><?= $category->categoryName ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </li>
