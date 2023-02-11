@@ -22,7 +22,7 @@
 
                     <ul class="dropdown-menu" style="max-height: 400px; overflow-y: auto;">
                         <?php foreach ($data['categories'] as $category) : ?>
-                            <li><a class="dropdown-item" href="<?= ROOT ?>allproducts/<?= $category->categoryID ?>"><?= $category->categoryName ?></a></li>
+                            <li><a class="dropdown-item" href="<?= ROOT ?>allproducts/<?= $category->categoryName ?>"><?= $category->categoryName ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </li>
