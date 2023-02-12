@@ -38,11 +38,10 @@ class Profile extends Controller
         if ($_SERVER['REQUEST_METHOD'] == "PUT") {
             $data = file_get_contents("php://input");
             $data = json_decode($data);
-            var_dump($data);
             if (is_object($data)) {
                 $user = $this->load_model("userInfo");
                 $user_data = $user->check_login();
-                $check = $user->changePassword($data, $user_data->id);
+                $check = $user->changePassword($data->newPassword, $user_data->userID);
                 if ($check) {
                     $arr['message'] = "Password changed successfully";
                     $arr['message_type'] = "success";

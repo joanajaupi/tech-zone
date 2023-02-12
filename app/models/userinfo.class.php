@@ -96,7 +96,7 @@ class userInfo
     public function changePassword($password, $id)
     {
         $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-        $db = Database::getInstance();
+        $db = Database::instance();
         $data = array();
         $data['password'] = password_hash($password, PASSWORD_DEFAULT);
         $data['userID'] = $id;
