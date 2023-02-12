@@ -1,7 +1,7 @@
 const infoForm = document.querySelector("#userInformation");
 const personalInfoButton = document.querySelector("#personalInfoButton");
-const changePasswordButton = document.querySelector("#changePasswordButton");
 const passwordField = document.querySelector("#newPassword");
+const changePasswordButton = document.querySelector("#changePasswordButton");
 
 document.addEventListener("DOMContentLoaded", function () {
   getUserInformation();
@@ -63,4 +63,26 @@ passwordField.addEventListener("keyup", () => {
   } else {
     changePasswordButton.disabled = false;
   }
+});
+
+changePasswordButton.addEventListener("click", () => {
+  const newPassword = passwordField.value;
+  fetch("http://localhost/tech-zone/public/profile/changePassword", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      newPassword,
+    }),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });

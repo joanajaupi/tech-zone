@@ -73,68 +73,76 @@ class userInfo
             $result = $db->read($query, $array);
             if (is_array($result)) {
                 $hashed_password = $result[0]->password;
-           
-            if (password_verify($logindata["password"], $hashed_password)) {
-                $_SESSION['userID'] = $result[0]->userID;
-                show($result);
-                if ($result[0]->admin == 1) {
-                    header("Location:" . ROOT . "admin");
-                    die;
-                } else {
-                    header("Location:" . ROOT . "home");
-                    die;
+
+                if (password_verify($logindata["password"], $hashed_password)) {
+                    $_SESSION['userID'] = $result[0]->userID;
+                    show($result);
+                    if ($result[0]->admin == 1) {
+                        header("Location:" . ROOT . "admin");
+                        die;
+                    } else {
+                        header("Location:" . ROOT . "home");
+                        die;
+                    }
                 }
+                echo "wrong password or email";
             }
-            echo "wrong password or email";
-        } 
-        echo "wrong email";
+            echo "wrong email";
         }
         $_SESSION["error"] = $this->error;
         check_error();
     }
 
-    public function get_user($url)
+    public function changePassword($password, $id)
     {
+        $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $db = Database::getInstance();
+        $data = array();
+        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        $data['userID'] = $id;
+        $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
+        $result = $db->write($query, $data);
+        if ($result) {
+            return true;
+        }
+        return false;
     }
 
-  
     //check if user is logged in
-    public function check_login($redirect = false, $allowed = array()){
+    public function check_login($redirect = false, $allowed = array())
+    {
         $db = Database::getInstance();
         $arr1 = array();
-        if(count($allowed) > 0)
-        {
+        if (count($allowed) > 0) {
             $a['userID'] = $_SESSION['userID'];
             $query = "SELECT admin from userInfo WHERE userID=:userID;";
             $result = $db->read($query, $a);
             show($result);
-                    if(is_array($result)){
-                        $result = $result[0];
-                        var_dump($result);
-                        if(in_array($result->admin, $allowed)){
-                            return $result;
-                        }
-                    }
+            if (is_array($result)) {
+                $result = $result[0];
+                var_dump($result);
+                if (in_array($result->admin, $allowed)) {
+                    return $result;
                 }
-        else
-        {
-            if(isset($_SESSION['userID'])){
+            }
+        } else {
+            if (isset($_SESSION['userID'])) {
                 $arr = array();
                 $arr['userID'] = $_SESSION['userID'];
                 $query = "SELECT * from userInfo WHERE userID=:userID limit 1";
                 $result = $db->read($query, $arr);
-                if(is_array($result)){
+                if (is_array($result)) {
                     return $result[0];
                 }
             }
-            if($redirect){
+            if ($redirect) {
                 header("Location:" . ROOT . "login");
                 die;
             }
         }
-       
+
         return false;
-}
+    }
     public function logout()
     {
         if (isset($_SESSION['userID'])) {

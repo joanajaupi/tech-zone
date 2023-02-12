@@ -33,7 +33,28 @@ class Profile extends Controller
     //     echo json_encode($data);
     // }
 
-    // public function editPassword()
-    // {
-    // }
+    public function changePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "PUT") {
+            $data = file_get_contents("php://input");
+            $data = json_decode($data);
+            var_dump($data);
+            if (is_object($data)) {
+                $user = $this->load_model("userInfo");
+                $user_data = $user->check_login();
+                $check = $user->changePassword($data, $user_data->id);
+                if ($check) {
+                    $arr['message'] = "Password changed successfully";
+                    $arr['message_type'] = "success";
+                    $arr['data'] = $data;
+                    echo json_encode($arr);
+                } else {
+                    $arr['message'] = "Password could not be changed";
+                    $arr['message_type'] = "error";
+                    $arr['data'] = "";
+                    // echo json_encode($arr);
+                }
+            }
+        }
+    }
 }
