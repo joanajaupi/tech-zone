@@ -19,7 +19,7 @@ class allProducts extends Controller
     public function fetchAll()
     {
         $products = $this->load_model("productinfo");
-        $products = $products->get_products();
+        $products = $products->fetchAllProducts();
         $data['products'] = $products;
         $data['message'] = "Products fetched successfully";
         echo json_encode($data);
@@ -28,7 +28,7 @@ class allProducts extends Controller
     public function fetchByCategory($category)
     {
         $products = $this->load_model("productinfo");
-        $products = $products->getByCategory($category);
+        $products = $products->fetchByCategory($category);
         $data['products'] = $products;
         $data['message'] = "Products fetched successfully";
         echo json_encode($data);
