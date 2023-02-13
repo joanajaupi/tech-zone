@@ -24,14 +24,30 @@ class Profile extends Controller
         echo json_encode($data);
     }
 
-    // public function editInformation()
-    // {
-    //     $products = $this->load_model("productinfo");
-    //     $products = $products->get_products();
-    //     $data['products'] = $products;
-    //     $data['message'] = "Products fetched successfully";
-    //     echo json_encode($data);
-    // }
+    public function updateInformation()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "PUT") {
+            $data = file_get_contents("php://input");
+            $data = json_decode($data);
+            if (is_object($data)) {
+                $user = $this->load_model("userInfo");
+                $user_data = $user->check_login();
+
+                $check = $user->updateInformation($data->name, $data->surname, $user_data->email, $data->phone, $user_data->userID);
+                if ($check) {
+                    $arr['message'] = "Information updated successfully";
+                    $arr['message_type'] = "success";
+                    $arr['data'] = $data;
+                    echo json_encode($arr);
+                } else {
+                    $arr['message'] = "Information could not be updated";
+                    $arr['message_type'] = "error";
+                    $arr['data'] = "";
+                    echo json_encode($arr);
+                }
+            }
+        }
+    }
 
     public function changePassword()
     {
@@ -51,7 +67,7 @@ class Profile extends Controller
                     $arr['message'] = "Password could not be changed";
                     $arr['message_type'] = "error";
                     $arr['data'] = "";
-                    // echo json_encode($arr);
+                    echo json_encode($arr);
                 }
             }
         }

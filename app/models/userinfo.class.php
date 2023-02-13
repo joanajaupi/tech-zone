@@ -58,6 +58,7 @@ class userInfo
 
         $_SESSION['error'] = $this->error;
     }
+
     public function login($POST)
     {
         $logindata = array();
@@ -93,21 +94,6 @@ class userInfo
         check_error();
     }
 
-    public function changePassword($password, $id)
-    {
-        $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-        $db = Database::instance();
-        $data = array();
-        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-        $data['userID'] = $id;
-        $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
-        $result = $db->write($query, $data);
-        if ($result) {
-            return true;
-        }
-        return false;
-    }
-
     //check if user is logged in
     public function check_login($redirect = false, $allowed = array())
     {
@@ -140,9 +126,42 @@ class userInfo
                 die;
             }
         }
-
         return false;
     }
+
+    public function changePassword($password, $id)
+    {
+        $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $db = Database::instance();
+        $data = array();
+        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        $data['userID'] = $id;
+        $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
+        $result = $db->write($query, $data);
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+
+    public function updateInformation($name, $surname, $email, $phone, $id)
+    {
+        $data = array();
+        $data['name'] = trim(filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $data['surname'] = trim(filter_var($surname, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $data['email'] = trim(filter_var($email, FILTER_SANITIZE_EMAIL));
+        $data['phone'] = trim(filter_var($phone, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $data['userID'] = $id;
+
+        $db = Database::instance();
+        $query = "UPDATE userInfo SET name=:name, surname=:surname, email=:email, phone=:phone WHERE userID=:userID";
+        $result = $db->write($query, $data);
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+
     public function logout()
     {
         if (isset($_SESSION['userID'])) {

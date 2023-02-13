@@ -67,6 +67,7 @@ passwordField.addEventListener("keyup", () => {
 
 changePasswordButton.addEventListener("click", () => {
   const newPassword = passwordField.value;
+  passwordField.value = "";
   fetch("http://localhost/tech-zone/public/profile/changePassword", {
     method: "PUT",
     headers: {
@@ -74,6 +75,33 @@ changePasswordButton.addEventListener("click", () => {
     },
     body: JSON.stringify({
       newPassword,
+    }),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      passwordField.value = "";
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+personalInfoButton.addEventListener("click", () => {
+  const name = document.querySelector("#name").value;
+  const surname = document.querySelector("#surname").value;
+  const phone = document.querySelector("#phone").value;
+  fetch("http://localhost/tech-zone/public/profile/updateInformation", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      surname,
+      phone,
     }),
   })
     .then(function (response) {
