@@ -26,10 +26,11 @@
         {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $data = file_get_contents("php://input");
+                
                 $data = json_decode($data);
                 if (is_object($data)) {
                     $product = $this->load_model("productinfo");
-                    $check = $product->delete($data);
+                    $check = $product->delete($data->id);
                     if ($check) {
                         $arr['message'] = "Product deleted successfully";
                         $arr['message_type'] = "success";
