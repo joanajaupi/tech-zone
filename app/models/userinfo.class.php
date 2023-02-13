@@ -144,17 +144,16 @@ class userInfo
         return false;
     }
 
-    public function updateInformation($name, $surname, $email, $phone, $id)
+    public function updateInformation($name, $surname, $phone, $id)
     {
         $data = array();
         $data['name'] = trim(filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $data['surname'] = trim(filter_var($surname, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-        $data['email'] = trim(filter_var($email, FILTER_SANITIZE_EMAIL));
         $data['phone'] = trim(filter_var($phone, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $data['userID'] = $id;
 
         $db = Database::instance();
-        $query = "UPDATE userInfo SET name=:name, surname=:surname, email=:email, phone=:phone WHERE userID=:userID";
+        $query = "UPDATE userInfo SET name=:name, surname=:surname, phone=:phone WHERE userID=:userID";
         $result = $db->write($query, $data);
         if ($result) {
             return true;

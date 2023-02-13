@@ -2,6 +2,7 @@ const infoForm = document.querySelector("#userInformation");
 const personalInfoButton = document.querySelector("#personalInfoButton");
 const passwordField = document.querySelector("#newPassword");
 const changePasswordButton = document.querySelector("#changePasswordButton");
+const userInfoAlert = document.querySelector("#userInfoAlert");
 
 document.addEventListener("DOMContentLoaded", function () {
   getUserInformation();
@@ -108,9 +109,21 @@ personalInfoButton.addEventListener("click", () => {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      userInfoAlert.innerText = data.message;
+      if (data.status === "success") {
+        userInfoAlert.classList.add("alert-success");
+        userInfoAlert.classList.remove("alert-danger");
+        userInfoAlert.classList.remove("hidden");
+      } else {
+        userInfoAlert.classList.add("alert-danger");
+        userInfoAlert.classList.remove("alert-success");
+        userInfoAlert.classList.remove("hidden");
+      }
     })
     .catch(function (error) {
-      console.log(error);
+      userInfoAlert.innerText = "Something went wrong";
+      userInfoAlert.classList.add("alert-danger");
+      userInfoAlert.classList.remove("alert-success");
+      userInfoAlert.classList.remove("hidden");
     });
 });

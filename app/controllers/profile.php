@@ -33,7 +33,7 @@ class Profile extends Controller
                 $user = $this->load_model("userInfo");
                 $user_data = $user->check_login();
 
-                $check = $user->updateInformation($data->name, $data->surname, $user_data->email, $data->phone, $user_data->userID);
+                $check = $user->updateInformation($data->name, $data->surname, $data->phone, $user_data->userID);
                 if ($check) {
                     $arr['message'] = "Information updated successfully";
                     $arr['message_type'] = "success";
