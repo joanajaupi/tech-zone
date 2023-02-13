@@ -26,7 +26,6 @@
         </div>
     </div>
 </div>
-<?php $this->view('admin-footer'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         fetchAll();

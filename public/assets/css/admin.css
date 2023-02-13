@@ -4,26 +4,27 @@
 }
 #sidebar .list-group {
   min-width: 400px;
-  background-color: #191919;
-  min-height: 100vh;
+  background-color: #212121;
+  height: 100%;
+  
 }
 #sidebar i {
   margin-right: 6px;
-}
 
+}
 #sidebar .list-group-item {
   border-radius: 0;
-  background-color: #191919;
+  background-color: #212121;
   color: #EEE;
   border-left: 0;
   border-right: 0;
-  border-color: #262626;
+  border-color:#212121;
   white-space: nowrap;
-}
+  }
 
 /* highlight active menu */
 #sidebar .list-group-item:not(.collapsed) {
-  background-color: #161616;
+  background-color:#212121;
 }
 
 /* closed state */

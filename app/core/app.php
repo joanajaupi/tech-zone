@@ -28,9 +28,10 @@ class App
                 unset($url[1]);
             }
         }
-        $this->params = count($url) > 0 ? array_values($url) : ['home'];
+        //get the parameters if any and set them in the params property of the class 
+        $this->params = count($url) > 0 ? array_values($url) : [];
 
-        //call the method and pass the parameters to it
+        //call the method and pass the parameters to it 
         call_user_func_array([$this->controller, $this->method], $this->params);
 
     }

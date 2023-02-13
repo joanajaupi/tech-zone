@@ -52,7 +52,7 @@
                 $data = json_decode($data);
                 if (is_object($data)) {
                     $product = $this->load_model("productinfo");
-                    $check = $product->create($data);
+                    $check = $product->create($data->productName, $data->productPrice, $data->productDescription, $data->productImage, $data->productCategory, $data->productQuantity);
                     if ($check) {
                         $arr['message'] = "Product created successfully";
                         $arr['message_type'] = "success";

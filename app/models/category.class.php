@@ -3,6 +3,7 @@ class Category{
 
     public function create($data){
        $db = Database::getInstance();
+       //check if category name is alphabets only
        $arr['category'] = ucwords($data->categoryName);
        if(!preg_match("/^[a-zA-Z]+$/", $arr['category'])){
            $_SESSION['error'] = "Category name must be alphabets only";

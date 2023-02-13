@@ -25,14 +25,30 @@ class Admin extends Controller
         
     }
 
-    public function products()
-    {
-        $user = $this->load_model("userInfo");
-        $user_data = $user->check_login([1]);
-        if (is_object($user_data)) {
-            $data['user_data'] = $user_data;
+    public function products($params = []){
+
+        if(empty($params)){
+            $user = $this->load_model("userInfo");
+            $user_data = $user->check_login([1]);
+            if (is_object($user_data)) {
+                $data['user_data'] = $user_data;
+            }
+            $data['page_title'] = "Products";
+            $this->view("admin-products", $data);
+        }else{
+            
+            //check if parameter is create edit or delete
+            if($params == "create"){
+                $user = $this->load_model("userInfo");
+                $user_data = $user->check_login([1]);
+                if (is_object($user_data)) {
+                    $data['user_data'] = $user_data;
+                }
+                $data['page_title'] = "Create Product";
+                $this->view("product-create", $data);
         }
-        $data['page_title'] = "Products";
-        $this->view("admin-products", $data);
     }
+
+   
+}
 }
