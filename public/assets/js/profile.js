@@ -3,6 +3,7 @@ const personalInfoButton = document.querySelector("#personalInfoButton");
 const passwordField = document.querySelector("#newPassword");
 const changePasswordButton = document.querySelector("#changePasswordButton");
 const userInfoAlert = document.querySelector("#userInfoAlert");
+const passwordChangeAlert = document.querySelector("#passwordChangeAlert");
 
 document.addEventListener("DOMContentLoaded", function () {
   getUserInformation();
@@ -82,11 +83,26 @@ changePasswordButton.addEventListener("click", () => {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      passwordChangeAlert.innerText = data.message;
+      if (data.message_type === "success") {
+        passwordChangeAlert.classList.add("alert-success");
+        passwordChangeAlert.classList.remove("alert-danger");
+        passwordChangeAlert.classList.remove("hidden");
+      } else {
+        passwordChangeAlert.classList.add("alert-danger");
+        passwordChangeAlert.classList.remove("alert-success");
+        passwordChangeAlert.classList.remove("hidden");
+      }
       passwordField.value = "";
+      changePasswordButton.disabled = true;
     })
     .catch(function (error) {
-      console.log(error);
+      passwordChangeAlert.innerText = "Something went wrong";
+      passwordChangeAlert.classList.add("alert-danger");
+      passwordChangeAlert.classList.remove("alert-success");
+      passwordChangeAlert.classList.remove("hidden");
+      passwordField.value = "";
+      changePasswordButton.disabled = true;
     });
 });
 
@@ -110,7 +126,7 @@ personalInfoButton.addEventListener("click", () => {
     })
     .then(function (data) {
       userInfoAlert.innerText = data.message;
-      if (data.status === "success") {
+      if (data.message_type === "success") {
         userInfoAlert.classList.add("alert-success");
         userInfoAlert.classList.remove("alert-danger");
         userInfoAlert.classList.remove("hidden");

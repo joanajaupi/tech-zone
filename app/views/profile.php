@@ -19,14 +19,20 @@
             </form>
         </div>
         <div class="container-sm w-70 border border-info rounded-1">
+            <h3>Change password information</h3>
+            <h5>Password should be at least 8 characters long and contain at least 1 uppercase letter and one number. It should not exceed 16 characters.</h5>
+            <br>
+            <br>
             <form>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">New password</label>
-                    <div class="col-sm-10">
+                    <label for="inputPassword" class="col-sm-3 col-form-label">New password</label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password">
                     </div>
                 </div>
-                <button class="btn btn-primary" id="changePasswordButton" type="button" disabled="true">Change password</button>
+                <br>
+                <button class="btn btn-primary float-start" id="changePasswordButton" type="button" disabled="true">Change password</button>
+                <div id="passwordChangeAlert" class="float-end hidden alert">Hello</div>
             </form>
         </div>
     </div>
