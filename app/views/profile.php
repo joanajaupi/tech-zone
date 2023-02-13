@@ -9,7 +9,7 @@
         <h1>Profile Information</h1>
         <h2>Check your user information and login credentials. Modify them as you wish</h2>
     </div>
-    <div class="d-flex flex-row justify-content-center ">
+    <div class="d-flex flex-row justify-content-center">
         <div class="container-sm w-10 border border-warning rounded-1">
             <h3>Personal Information</h3>
             <form>

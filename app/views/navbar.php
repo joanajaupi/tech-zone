@@ -48,7 +48,6 @@
                             <a class="nav-link active" aria-current="page" href="<?= ROOT ?>logout">Logout</a>
                         </li>
                     <?php endif; ?>
-
                 </ul>
             </form>
         </div>
