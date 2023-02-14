@@ -1,11 +1,82 @@
 <?php $this->view("header", $data); ?>
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/home.css">
 <?php $this->view("navbar", $data); ?>
+<style>
+body{
+   background-color: #0a131f;
+   
+}
+
+.card{
+   background-color: #13293D;
+   color: #fff;
+   shadow: 5px 5px 5px 5px #fff;
+
+}
+.card:hover{
+   background-color: #0a131f;
+   color: #fff;
+}
+.feat{
+    border-radius: 5px;
+    margin-top: 50px;
+    padding: 0px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #13293D;
+    color: #fff;
+}
+.feat:hover{
+    background-color: #0a131f;
+    color: #fff;
+}
+.col-md-3{
+    width: 50%;
+    
+}
+.img-fluid {
+    max-width: 100%;
+    height: 300px;
+}
+#discover{
+    background-color: #fff;
+    color: #13293D;
+    font-weight: 900;
+    border: none;
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+#img{
+    height: 300px;
+    width: auto;
+    fit : cover;
+}
+#img2{
+    height: 300px;
+    width: auto;
+    fit : cover;
+    text-align: right;
+}
+footer,
+.footer-basic{
+    background-color: #0a131f;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+</style>
 
 </head>
 
 <body>
   <!--carousel-->
+  <div>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -32,14 +103,48 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <!--end carousel-->
-  <div>
-    <!--start of about us-->
   </div>
+  <!--end carousel-->
+  <!--featured products-->
+  <div class="container">
+  <h2 class="text-center text-white">"Experience tomorrow's technology today at our store!"</h2>
+        <div class="card feat">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3" id="img">
+                <img src="<?php echo ROOT; ?>assets/images/discover1.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="col-md-3">
+                  <p class="text-center">Laptops</p>
+                  <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vit
+                    ae semper nisl nunc nec nisl. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae semper nisl nunc nec nisl.</p>
+                  <button class="btn btn-primary btn-block" id="discover">Discover More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card feat">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <p class="text-center">Laptops</p>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vit
+                  ae semper nisl nunc nec nisl. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae semper nisl nunc nec nisl.</p>
+                <button class="btn btn-primary btn-block" id="discover">Discover more</button>
+              </div>
+              <div class="col-md-3" id="img-2">
+                <img src="<?php echo ROOT; ?>assets/images/discover2.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <div class="featured-products">
+    
+  </div>
+    <!--start of about us-->
   <div class="responsive-container-block container">
-    <p class="text-blk team-head-text">
-      Our Team&nbsp;
-    </p>
+    <h1 class="text-center text-white">About Us</h1>  
     <div class="responsive-container-block">
       <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
         <div class="card">
@@ -91,7 +196,9 @@
       </div>
     </div>
 
-    <?php $this->view("footer", $data); ?>
+<?php $this->view('footer'); ?>
+  </div>
+
 </body>
 
 </html>
