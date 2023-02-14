@@ -9,11 +9,14 @@
   background-color: #333;
   color: #EEE;
   padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
   text-align: center;
 }
-
+.list-group a{
+  /*admin sidebar */
+  color: #EEE;
+  background-color: #333;
+  font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -27,7 +30,7 @@
                 <a href="<?=ROOT?>admin/categories" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Categories</span></a>
                 <a href="<?=ROOT?>admin/products/create" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Create Product</span></a>
                 <a href="<?=ROOT?>admin/users" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-user"></i> <span class="d-none d-md-inline">Users</span></a>
-                <a href="<?=ROOT?>logout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="d-none d-md-inline">Log Out</span></a>
+                <a href="<?=ROOT?>logout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="d-none d-md-inline" style="font-weight: bold"><i class="fa fa-lock"></i> Log Out</span></a>
             </div>
         </div>
         <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
