@@ -37,15 +37,17 @@ class productinfo
         }
         return false;
     }
-}
 
-        public function delete($id){
-            $db = Database::instance();
-            $arr['id'] = $id;
-            $query = "DELETE FROM product WHERE productID = :id";
-            $result = $db->write($query, $arr);
-            if($result){return true;}
-            return false;
+
+    public function delete($id)
+    {
+        $db = Database::instance();
+        $arr['id'] = $id;
+        $query = "DELETE FROM product WHERE productID = :id";
+        $result = $db->write($query, $arr);
+        if ($result) {
+            return true;
         }
+        return false;
     }
-
+}
