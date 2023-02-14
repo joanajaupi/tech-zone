@@ -3,24 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchAll();
 });
 const table = document.getElementById('table');
+
 function fetchAll(){
-    fetch("<?=ROOT?>allproducts/fetchAll", {
-    method:"GET",
-    headers:{
-        "Content-Type":"application/json"
+    fetch("http://localhost/tech-zone/public/allproducts/fetchAll", {
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json"
+
+        }
+    }).then(function(response){
+        return response.json();
     }
-}).then(function(response){
-    return response.json();
-}
-).then(function(data){
-    console.log(data);
-    createTable(data['products']);
-    
-}
-).catch(function(error){
-    console.log(error);
-}
-);
+    ).then(function(data){
+        console.log(data);
+        createTable(data['products']);
+    }
+    ).catch(function(error){
+        console.log(error);
+    }
+    );
+
 }
 
 function createTable(data){
@@ -45,7 +47,7 @@ var html = '<thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Category</th><t
 
 }
 function deleteProduct(id){
-fetch("<?=ROOT?>product/delete", {
+fetch("http://localhost/tech-zone/public/product/delete", {
     method:"POST",
     headers:{
         "Content-Type":"application/json"

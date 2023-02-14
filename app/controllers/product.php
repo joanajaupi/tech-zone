@@ -5,7 +5,7 @@
         {
             $product = $this->load_model("productinfo");
             $data['page_title'] = "Product";
-            $product_data = $product->get_products();
+            $product_data = $product->fetchAllProducts();
             $data['product_data'] = $product_data;
             $this->view("product", $data);
         }
@@ -14,7 +14,7 @@
         {
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $product = $this->load_model("productinfo");
-                $data = $product->get_products();
+                $data = $product->fetchAllProducts();
                 $arr['message'] = "Products fetched successfully";
                 $arr['message_type'] = "success";
                 $arr['data'] = $data;
@@ -68,6 +68,5 @@
                 }
             }
         }
-        
-
+    
     }
