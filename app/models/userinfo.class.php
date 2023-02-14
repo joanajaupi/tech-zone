@@ -169,4 +169,13 @@ class userInfo
         header("Location:" . ROOT . "home");
         die;
     }
+    public function getUsers(){
+        $db = Database::instance();
+        $query = "SELECT name, surname, email FROM userInfo";
+        $result = $db->read($query);
+        if(is_array($result)){
+            return $result;
+        }
+        return false;
+    }
 }

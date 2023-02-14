@@ -48,7 +48,17 @@ class Admin extends Controller
                 $this->view("product-create", $data);
         }
     }
+}
+
+    public function users(){
+        $user = $this->load_model("userInfo");
+        $user_data = $user->check_login([1]);
+        if (is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+        $data['page_title'] = "Users";
+        $this->view("admin-users", $data);
+    }
 
    
-}
 }
