@@ -12,9 +12,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?= ROOT ?>allproducts">All Products</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Deals and offers</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
