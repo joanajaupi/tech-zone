@@ -38,6 +38,14 @@ class productinfo
         return false;
     }
 
+    public function fetchProduct($productID)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $query = "SELECT p.*, c.categoryName FROM product p JOIN category c ON p.productCategoryID = c.categoryID WHERE p.productID = :productID";
+        $result = $db->read($query, $arr);
+        return $result;
+    }
 
     public function delete($id)
     {
