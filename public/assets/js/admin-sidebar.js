@@ -27,6 +27,7 @@ function createInfo(data){
     outDiv.innerHTML = html;
 }
 
-window.onload = function(){
+document.addEventListener('DOMContentLoaded', function(){
     fetchInfo();
 }
+);
