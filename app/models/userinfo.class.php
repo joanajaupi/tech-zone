@@ -171,7 +171,7 @@ class userInfo
     }
     public function getUsers(){
         $db = Database::instance();
-        $query = "SELECT name, surname, email FROM userInfo";
+        $query = "SELECT name, surname, email, admin FROM userInfo";
         $result = $db->read($query);
         if(is_array($result)){
             return $result;

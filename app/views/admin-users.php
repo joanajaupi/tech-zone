@@ -58,8 +58,13 @@ function createTable(data){
         var row = `<tr>
         <td>${data[i].name}</td>
         <td>${data[i].surname}</td>
-        <td>${data[i].email}</td>
-        <td>${data[i].role}</td>
+        <td>${data[i].email}</td>`
+        if(data[i].admin == 0){
+            row += `<td>Customer</td>`;
+        }else{
+            row += `<td>Admin</td>`;
+        }
+        row += `
         <td><a href = "<?=ROOT?>admin/users/${data[i].id}">Edit</a></td>
         </tr>`;
         table.innerHTML += row;
