@@ -144,4 +144,17 @@ class productinfo
         $result = $db->read($query);
         return $result[0]->numberOfPurchases;
     }
+
+    public function addStock($productID, $productQuantity)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $arr['productQuantity'] = $productQuantity;
+        $query = "UPDATE product SET productQuantity = productQuantity + :productQuantity WHERE productID = :productID";
+        $result = $db->write($query, $arr);
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
 }

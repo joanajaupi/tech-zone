@@ -123,7 +123,8 @@ class Product extends Controller
         }
     }
 
-    public function getNumberOfPurchases(){
+    public function getNumberOfPurchases()
+    {
         $user = $this->load_model("userInfo");
         $isLoggedIn = $user->check_login();
         if (!is_bool($isLoggedIn)) {
@@ -138,6 +139,29 @@ class Product extends Controller
             $arr['message_type'] = "success";
             $arr['redirect'] = ROOT . "login";
             echo json_encode($arr);
+        }
+    }
+
+    public function addStock()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $data = file_get_contents("php://input");
+            $data = json_decode($data);
+            if (is_object($data)) {
+                $product = $this->load_model("productinfo");
+                $check = $product->addStock($data->id, $data->stock);
+                if ($check) {
+                    $arr['message'] = "Stock added successfully";
+                    $arr['message_type'] = "success";
+                    $arr['data'] = $data;
+                    echo json_encode($arr);
+                } else {
+                    $arr['message'] = "Stock could not be added";
+                    $arr['message_type'] = "error";
+                    $arr['data'] = "";
+                    echo json_encode($arr);
+                }
+            }
         }
     }
 }
