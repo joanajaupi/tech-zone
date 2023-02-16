@@ -376,3 +376,17 @@
    }
     
 }
+
+.card{
+    width: 500px;
+    height: 100%;
+    background: var(--bg-grey);
+    border-radius: 4px;
+    box-shadow: 0 3px 6px var(--shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 20px;
+}

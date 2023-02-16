@@ -84,4 +84,6 @@ class Product extends Controller
         $arr['data'] = $data;
         echo json_encode($arr);
     }
+
+  
 }
