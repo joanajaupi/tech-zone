@@ -106,5 +106,5 @@
         </form>
     </div>
 </div>
-<script src="<?ROOT?>public/js/create-product.js"></script>
+<script src="<?=ROOT?>assets/js/create-product.js"></script>
 <?php $this->view("end", $data); ?>
