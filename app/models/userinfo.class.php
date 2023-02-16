@@ -178,4 +178,14 @@ class userInfo
         }
         return false;
     }
+
+    public function getNumberOfUsers(){
+        $db = Database::instance();
+        $query = "SELECT COUNT(userID) as number FROM userInfo";
+        $result = $db->read($query);
+        if(is_array($result)){
+            return $result[0]->number;
+        }
+        return false;
+    }
 }

@@ -51,4 +51,15 @@ class Category
         }
         return false;
     }
+
+    public function getNumberOfCategories()
+    {
+        $db = Database::instance();
+        $query = "SELECT COUNT(*) AS count FROM category";
+        $result = $db->read($query);
+        if (is_array($result)) {
+            return $result[0]->count;
+        }
+        return false;
+    }
 }

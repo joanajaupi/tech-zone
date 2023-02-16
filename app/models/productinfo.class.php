@@ -129,4 +129,18 @@ class productinfo
         $result = $db->read($query, $arr);
         return $result;
     }
+
+    public function getNumberOfProducts()
+    {
+        $db = Database::instance();
+        $query = "SELECT COUNT(*) AS numberOfProducts FROM product";
+        $result = $db->read($query);
+        return $result[0]->numberOfProducts;
+    }
+    public function getNumberOfPurchases(){
+        $db = Database::instance();
+        $query = "SELECT COUNT(*) AS numberOfPurchases FROM purchase";
+        $result = $db->read($query);
+        return $result[0]->numberOfPurchases;
+    }
 }

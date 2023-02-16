@@ -90,6 +90,18 @@ class Profile extends Controller
         }
     }
 
+    public function getNumberOfUsers()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            $user = $this->load_model("userInfo");
+            $data = $user->getNumberOfUsers();
+            $arr['message'] = "Number of users fetched successfully";
+            $arr['message_type'] = "success";
+            $arr['data'] = $data;
+            echo json_encode($arr);
+        }
+    }
+
     public function getPurchases()
     {
         if ($_SERVER['REQUEST_METHOD'] == "GET") {

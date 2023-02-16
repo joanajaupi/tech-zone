@@ -56,4 +56,15 @@
             }
         }
     }
+
+    public function getNumberOfCategories(){
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+            $category = $this->load_model("Category");
+            $data = $category->getNumberOfCategories();
+            $arr['message'] = "Number of categories fetched successfully";
+            $arr['message_type'] = "success";
+            $arr['data'] = $data;
+            echo json_encode($arr);
+        }
+    }
 }

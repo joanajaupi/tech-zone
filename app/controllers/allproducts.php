@@ -33,4 +33,13 @@ class allProducts extends Controller
         $data['message'] = "Products fetched successfully";
         echo json_encode($data);
     }
+
+    public function getNumberOfProducts()
+    {
+        $products = $this->load_model("productinfo");
+        $products = $products->getNumberOfProducts();
+        $data['products'] = $products;
+        $data['message'] = "Products fetched successfully";
+        echo json_encode($data);
+    }
 }
