@@ -15,7 +15,7 @@ class review
 
     public function createReview($productID, $userID, $review, $rate)
     {
-        $db = Database::getInstance();
+        $db = Database::instance();
         $date = date("Y-m-d H:i:s");
         $query = "INSERT INTO reviews (productID, userID, review, rate, publishedAt) VALUES (:productID, :userID, :review, :rate, :publishedAt)";
         $arr['productID'] = $productID;
@@ -29,7 +29,7 @@ class review
 
     public function hasWrittenReview($productID, $userID)
     {
-        $db = Database::getInstance();
+        $db = Database::instance();
         $query = "SELECT * FROM reviews WHERE productID = :productID AND userID = :userID";
         $arr['productID'] = $productID;
         $arr['userID'] = $userID;
