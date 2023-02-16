@@ -4,14 +4,12 @@
 <style>
   body {
     background-color: #0a131f;
-
   }
 
   .card {
     background-color: #13293D;
     color: #fff;
     shadow: 5px 5px 5px 5px #fff;
-
   }
 
   .card:hover {
@@ -37,7 +35,6 @@
 
   .col-md-3 {
     width: 50%;
-
   }
 
   .img-fluid {
@@ -70,7 +67,6 @@
     text-align: right;
   }
 
-  footer,
   .footer-basic {
     background-color: #0a131f;
     color: #fff;
@@ -97,7 +93,7 @@
           <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/iphonebanner.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/imac-banner.jpg" alt="Second slide">
+          <img class="d-block w-100 cimage" src="<?php echo ROOT; ?>assets/images/imac-banner.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="<?php echo ROOT; ?>assets/images/hp-banner.webp" alt="Third slide">

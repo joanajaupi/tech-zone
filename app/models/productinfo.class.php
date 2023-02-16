@@ -125,7 +125,7 @@ class productinfo
     {
         $db = Database::instance();
         $arr['userID'] = $userID;
-        $query = "SELECT transactionID, productName, productPrice, productQuantity,totalPrice FROM purchase WHERE userID = :userID";
+        $query = "SELECT transactionID, productName, productPrice, productQuantity,totalPrice,purchasedAt FROM purchase WHERE userID = :userID";
         $result = $db->read($query, $arr);
         return $result;
     }
@@ -137,7 +137,8 @@ class productinfo
         $result = $db->read($query);
         return $result[0]->numberOfProducts;
     }
-    public function getNumberOfPurchases(){
+    public function getNumberOfPurchases()
+    {
         $db = Database::instance();
         $query = "SELECT COUNT(*) AS numberOfPurchases FROM purchase";
         $result = $db->read($query);

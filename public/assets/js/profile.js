@@ -88,6 +88,7 @@ const appendUserPurchases = (purchases) => {
       <th scope="col">Product Price</th>
       <th scope="col">Product quantity</th>
       <th scope="col">Total Price</th>
+      <th scope="col">Date</th>
     </tr>
   </thead>
   <tbody>
@@ -99,6 +100,7 @@ const appendUserPurchases = (purchases) => {
     <td>${purchase.productPrice}</td>
     <td>${purchase.productQuantity}</td>
     <td>${purchase.totalPrice}</td>
+    <td>${purchase.purchasedAt}</td>
     </tr>`;
   }
 

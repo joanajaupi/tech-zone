@@ -34,6 +34,7 @@ CREATE TABLE purchase(
   productPrice float NOT NULL,
   productQuantity int NOT NULL,
   totalPrice float NOT NULL,
+  purchasedAt DATE,
   userID int, 
   FOREIGN KEY (userID) references userInfo(userID) 
 );
@@ -59,4 +60,3 @@ ALTER TABLE `reviews`
 
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
