@@ -26,9 +26,7 @@ class Category
         }
         return false;
     }
-    public function edit($data)
-    {
-    }
+   
     public function delete($data)
     {
         $db = Database::getInstance();
@@ -59,6 +57,18 @@ class Category
         $result = $db->read($query);
         if (is_array($result)) {
             return $result[0]->count;
+        }
+        return false;
+    }
+
+    public function edit($data){
+        $db = Database::instance();
+        $arr['categoryName'] = $data->categoryName;
+        $arr['categoryID'] = $data->categoryID;
+        $query = "UPDATE category SET categoryName = :categoryName WHERE categoryID = :categoryID";
+        $result = $db->write($query, $arr);
+        if ($result) {
+            return $result;
         }
         return false;
     }

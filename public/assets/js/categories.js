@@ -82,7 +82,7 @@ function makeTable(data){
        
       html += `<tr><th scope="row">${data[i].categoryID}</th><td>${data[i].categoryName}</td>
       <td><button class="btn btn-danger" onclick="delete_row(${data[i].categoryID})">Delete</button>
-      <button class="btn btn-primary" onclick="edit_row(${data[i].categoryName})">
+      <button class="btn btn-primary" onclick="edit_row(${data[i].categoryID})">
       Edit</button></td></tr>`;
             
     }
@@ -110,7 +110,38 @@ function delete_row(id) {
     }
     );
 }
-function edit_row(id) {
-    var data = {id:id, type:"edit_category"};
-    send_data(data);
+
+
+function edit_row(id){
+
+    //alert to edit the name
+    var new_name = prompt("Enter new name");
+    if(new_name == null || new_name == ""){
+        return;
+    }
+    fetch("http://localhost/tech-zone/public/categories/edit", {
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(
+            {categoryID:id, 
+            categoryName:new_name
+        })
+    }).then(function(response){
+        console.log(response);
+        return response.json();
+    }
+    ).then(function(data){
+        console.log(data);
+        window.location.reload();
+    }
+    ).catch(function(error){
+        console.log(error);
+    }
+    );
+
+
+
 }
+

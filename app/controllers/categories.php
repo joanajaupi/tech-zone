@@ -67,4 +67,25 @@
             echo json_encode($arr);
         }
     }
+    public function edit(){
+        if($_SERVER['REQUEST_METHOD']== "PUT"){
+            $data = file_get_contents("php://input");
+            $data = json_decode($data);
+            if(is_object($data)){
+                $category = $this->load_model("Category");
+                $check = $category->edit($data);
+                if($check){
+                    $arr['message'] = "Category edited successfully";
+                    $arr['message_type'] = "success";
+                    $arr['data'] = $data;
+                    echo json_encode($arr);
+                }else{
+                    $arr['message'] = "Category could not be edited";
+                    $arr['message_type'] = "error";
+                    $arr['data'] = "";
+                    echo json_encode($arr);
+                }
+            }
+        }
+    }
 }
