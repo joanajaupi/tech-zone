@@ -80,27 +80,18 @@ const purchaseItem = () => {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         console.log(data.redirect !== undefined);
         if (data.redirect !== undefined) {
           window.location.href = data.redirect;
+        } else if (data.message_type == "success") {
+          alert("Item purchased successfully");
+        } else {
+          alert("Could not purchase item");
         }
-        // } else if (data.success) {
-        //   purchaseButton.innerHTML = "Added to cart";
-        //   purchaseButton.classList.remove("btn-outline-dark");
-        //   purchaseButton.classList.add("btn-success");
-        //   purchaseButton.disabled = true;
-        // } else {
-        //   purchaseButton.innerHTML = "Error";
-        //   purchaseButton.classList.remove("btn-outline-dark");
-        //   purchaseButton.classList.add("btn-danger");
-        //   purchaseButton.disabled = true;
-        // }
       })
       .catch(function (error) {
-        // purchaseButton.innerHTML = "Error";
-        // purchaseButton.classList.remove("btn-outline-dark");
-        // purchaseButton.classList.add("btn-danger");
-        // purchaseButton.disabled = true;
+        alert("Could not purchase item, an error occurred");
       });
   } else {
     alert("Please enter a valid quantity");

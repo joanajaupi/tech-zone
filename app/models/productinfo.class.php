@@ -58,4 +58,66 @@ class productinfo
         }
         return false;
     }
+
+    public function canPurchase($productID, $quantity)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $query = "SELECT productQuantity FROM product WHERE productID = :productID";
+        $result = $db->read($query, $arr);
+        if ($result[0]->productQuantity >= $quantity) {
+            return true;
+        }
+        return false;
+    }
+
+    public function purchase($productID, $userID, $productQuantity)
+    {
+        $productPrice = $this->readPrice($productID);
+        $productName = $this->readName($productID);
+        $this->removeQuantity($productID, $productQuantity);
+        $db = Database::instance();
+
+        $arr['productPrice'] = $productPrice;
+        $arr['productQuantity'] = $productQuantity;
+        $arr['totalPrice'] = $productPrice * $productQuantity;
+        $arr['productName'] = $productName;
+        $arr['userID'] = $userID;
+
+        $query = "INSERT INTO purchase ( userID, productQuantity, productPrice, totalPrice, productName) VALUES (:userID, :productQuantity, :productPrice, :totalPrice, :productName)";
+
+        $result = $db->write($query, $arr);
+
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+
+    function readPrice($productID)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $query = "SELECT productPrice FROM product WHERE productID = :productID";
+        $result = $db->read($query, $arr);
+        return $result[0]->productPrice;
+    }
+
+    function readName($productID)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $query = "SELECT productName FROM product WHERE productID = :productID";
+        $result = $db->read($query, $arr);
+        return $result[0]->productName;
+    }
+
+    function removeQuantity($productID, $productQuantity)
+    {
+        $db = Database::instance();
+        $arr['productID'] = $productID;
+        $arr['productQuantity'] = $productQuantity;
+        $query = "UPDATE product SET productQuantity = productQuantity - :productQuantity WHERE productID = :productID";
+        $result = $db->write($query, $arr);
+    }
 }
