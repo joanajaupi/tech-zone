@@ -9,7 +9,8 @@
     function check_error(){
         if(isset($_SESSION['error']) && $_SESSION['error']!="")
         {
-            echo $_SESSION["error"];
+            
+            echo "<script>alert('".$_SESSION['error']."')</script>";
             unset($_SESSION['error']);
         }
     }

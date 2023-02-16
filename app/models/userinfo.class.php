@@ -16,16 +16,27 @@ class userInfo
         $data['admin'] = 0;
 
         //email validation 
-        if (empty($data['email']) || !preg_match("/^[a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]+$/", $data['email'])) {
-            $this->error .= "Please enter valid email <br>";
+        if (empty($data['email']) || !preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $data['email'])) {
+            $this->error .= "Please enter valid email ";
         }
         //name validation 
         if (empty($data['name']) || !preg_match("/^[a-zA-Z]+$/", $data['name'])) {
-            $this->error .= "invalid name<br>";
+            $this->error .= "invalid name";
+        }
+        //surname validation
+        if (empty($data['surname']) || !preg_match("/^[a-zA-Z]+$/", $data['surname'])) {
+            $this->error .= "invalid surname";
+        }
+        //phone validation
+        if (empty($data['phone']) || !preg_match("/^[0-9]{10}$/", $data['phone'])) {
+            $this->error .= "invalid phone";
         }
         //password validation 
-        if (strlen($password) < 4) {
-            $this->error .= "Password too short<br>";
+        if (strlen($password) < 8) {
+            $this->error .= "Password too short ";
+        }
+        if(!preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)){
+            $this->error .= "Password must contain at least one uppercase letter and one number<br>";
         }
         //password validation 
         if ($password !== $confirmPassword) {
@@ -57,6 +68,7 @@ class userInfo
         }
 
         $_SESSION['error'] = $this->error;
+        check_error();
     }
 
     public function login($POST)
@@ -65,8 +77,8 @@ class userInfo
         $db = Database::getInstance();
         $logindata['email'] = trim($POST['email']);
         $logindata['password'] = trim($POST['password']);
-        if (empty($logindata['email']) || !preg_match("/^[a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]+$/", $logindata['email'])) {
-            $this->error .= "Please enter valid email <br>";
+        if (empty($logindata['email']) || !preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $logindata['email'])) {
+            $this->error .= "Please enter valid email ";
         }
         if ($this->error == "") {
             $query = "SELECT userID, password, admin from userInfo WHERE email=:email";
@@ -86,9 +98,9 @@ class userInfo
                         die;
                     }
                 }
-                echo "wrong password or email";
+                $this->error .= "Password is incorrect";
             }
-            echo "wrong email";
+            $this->error .= "Email not found";
         }
         $_SESSION["error"] = $this->error;
         check_error();
@@ -134,6 +146,10 @@ class userInfo
         $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $db = Database::instance();
         $data = array();
+        if(strlen($password) < 8 || !preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)){
+            echo "<script>alert('Password must contain at least one uppercase letter and one number')</script>";
+            return false;
+        }else{
         $data['password'] = password_hash($password, PASSWORD_DEFAULT);
         $data['userID'] = $id;
         $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
@@ -142,6 +158,7 @@ class userInfo
             return true;
         }
         return false;
+    }
     }
 
     public function updateInformation($name, $surname, $phone, $id)
