@@ -60,5 +60,13 @@ class Admin extends Controller
         $this->view("admin-users", $data);
     }
 
-   
+    public function orders(){
+        $user = $this->load_model("userInfo");
+        $user_data = $user->check_login([1]);
+        if (is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+        $data['page_title'] = "Purchases";
+        $this->view("admin-orders", $data);
+    }
 }

@@ -30,6 +30,7 @@
                 <a href="<?=ROOT?>admin/categories" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Categories</span></a>
                 <a href="<?=ROOT?>admin/products/create" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Create Product</span></a>
                 <a href="<?=ROOT?>admin/users" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-user"></i> <span class="d-none d-md-inline">Users</span></a>
+                <a href="<?=ROOT?>admin/orders" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Orders</span></a>
                 <a href="<?=ROOT?>logout" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="d-none d-md-inline" style="font-weight: bold"><i class="fa fa-lock"></i> Log Out</span></a>
             </div>
         </div>

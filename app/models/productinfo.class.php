@@ -83,8 +83,8 @@ class productinfo
         $arr['totalPrice'] = $productPrice * $productQuantity;
         $arr['productName'] = $productName;
         $arr['userID'] = $userID;
-
-        $query = "INSERT INTO purchase ( userID, productQuantity, productPrice, totalPrice, productName) VALUES (:userID, :productQuantity, :productPrice, :totalPrice, :productName)";
+        $arr['purchasedAt'] = date("Y-m-d H:i:s");
+        $query = "INSERT INTO purchase ( userID, productQuantity, productPrice, totalPrice, productName, purchasedAt) VALUES (:userID, :productQuantity, :productPrice, :totalPrice, :productName, :purchasedAt)";
 
         $result = $db->write($query, $arr);
 
