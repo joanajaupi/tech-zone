@@ -80,8 +80,6 @@ const purchaseItem = () => {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-        console.log(data.redirect !== undefined);
         if (data.redirect !== undefined) {
           window.location.href = data.redirect;
         } else if (data.message_type == "success") {
@@ -120,12 +118,10 @@ function showReviews(productID) {
       if (reviews["data"].length > 0) {
         populateReviews(reviews["data"]);
       } else {
-        console.log(reviews);
         reviewDiv.innerHTML = `<h1 class="text-center">No reviews yet</h1>`;
       }
     })
     .catch(function (error) {
-      console.log(error);
       reviewDiv.innerHTML = `<h1 class="text-center">An error occurred</h1>`;
     });
 }
@@ -181,13 +177,11 @@ document.getElementById("submit").addEventListener("click", function (e) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      if (data["status"] == "success") {
+      if (data.message_type == "success") {
         window.location.reload();
       } else if (data.message_type == "duplicate") {
         alert("You have already reviewed this product");
       } else {
-        console.log(data);
       }
     });
 });
