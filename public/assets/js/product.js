@@ -1,8 +1,10 @@
 let productID;
+let product_Quantity;
 const productDiv = document.querySelector("#productDiv");
+let purchaseButton = null;
+
 document.addEventListener("DOMContentLoaded", function () {
   productID = getProductID();
-  console.log(productID);
   getProduct(productID);
 });
 
@@ -24,18 +26,18 @@ function getProduct(productID) {
     .then(function (product) {
       if (product.data.length > 0) {
         populate(product.data[0]);
+        purchaseButton = document.querySelector("#purchaseButton");
+        purchaseButton.addEventListener("click", () => purchaseItem());
       } else {
         productDiv.innerHTML = `<h1 class="text-center">Product does not exist</h1>`;
       }
     })
     .catch(function (error) {
-      console.log(error);
       productDiv.innerHTML = `<h1 class="text-center">An error occurred</h1>`;
     });
 }
 
 function populate(product) {
-  console.log(product);
   html = `<div class="col-md-6">
     <img src="http://localhost/tech-zone/public/assets/images/${product.productImage}" alt="" class="card-img-top mb-5 mb-md-0">
 </div>
@@ -50,10 +52,57 @@ function populate(product) {
     </div>
     <p class="lead">${product.productDescription}</p>
     <div class="d-flex">
-        <input class="form-control text-center me-3" type="number" name="productQuantity" id="productQuantity" min="1" max="10">
-        <button class="btn btn-outline-dark flex-shrink-0" type="button">Buy now</button>
+        <input class="form-control text-center me-3" type="number" name="productQuantity" id="productQuantity" min="1" max="${product.productQuantity}">
+        <button class="btn btn-outline-dark flex-shrink-0" type="button" id="purchaseButton">Buy now</button>
     </div>
 
 </div>`;
+  product_Quantity = product.productQuantity;
   productDiv.innerHTML = html;
 }
+
+const purchaseItem = () => {
+  let productQuantity = document.querySelector("#productQuantity").value;
+  if (productQuantity > 0 && productQuantity <= product_Quantity) {
+    fetch(
+      `http://localhost/tech-zone/public/product/purchaseItem/${productID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productQuantity: productQuantity,
+        }),
+      }
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data.redirect !== undefined);
+        if (data.redirect !== undefined) {
+          window.location.href = data.redirect;
+        }
+        // } else if (data.success) {
+        //   purchaseButton.innerHTML = "Added to cart";
+        //   purchaseButton.classList.remove("btn-outline-dark");
+        //   purchaseButton.classList.add("btn-success");
+        //   purchaseButton.disabled = true;
+        // } else {
+        //   purchaseButton.innerHTML = "Error";
+        //   purchaseButton.classList.remove("btn-outline-dark");
+        //   purchaseButton.classList.add("btn-danger");
+        //   purchaseButton.disabled = true;
+        // }
+      })
+      .catch(function (error) {
+        // purchaseButton.innerHTML = "Error";
+        // purchaseButton.classList.remove("btn-outline-dark");
+        // purchaseButton.classList.add("btn-danger");
+        // purchaseButton.disabled = true;
+      });
+  } else {
+    alert("Please enter a valid quantity");
+  }
+};
