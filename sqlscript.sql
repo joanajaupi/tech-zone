@@ -1,4 +1,3 @@
-#############################Create##################################
 
 ---------------------------User Info------------------------------
 CREATE TABLE userInfo (
@@ -17,14 +16,6 @@ CREATE TABLE category(
   categoryName varchar(30) NOT NULL UNIQUE
 );
 
----------------------Recommended Items-----------------------------
-CREATE TABLE recommended_items(
-    ID int PRIMARY KEY AUTO_INCREMENT,
-    fileName varchar(90),
-    categoryID int,
-    FOREIGN KEY (categoryID) references category(categoryID)
-);
-
 -------------------Product----------------------------------------
 CREATE TABLE product(
   productID int PRIMARY KEY AUTO_INCREMENT,
@@ -36,14 +27,33 @@ CREATE TABLE product(
   productImage varchar(50),
   FOREIGN KEY (productCategoryID) references category(categoryID) 
 );
+-------------------Purchase----------------------------------------
+CREATE TABLE purchase(
+  transactionID int PRIMARY KEY AUTO_INCREMENT,
+  productName varchar(25) NOT NULL,
+  productPrice float NOT NULL,
+  productQuantity int NOT NULL,
+  totalPrice float NOT NULL,
+  userID int, 
+  FOREIGN KEY (userID) references userInfo(userID) 
+);
+
 -----------------Reviews---------------------------------------
 
-CREATE TABLE reviews(
-  productID int,
-  userID int,
-  reviewTitle varchar(60) NOT NULL,
-  reviewDescription varchar(256) NOT NULL,
-  FOREIGN KEY (productID) references product(productID),
-  FOREIGN KEY (userID) references userInfo(userID),
-  PRIMARY KEY(productID,userID)
-);
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `review` text NOT NULL,
+  `publishedAt` date NOT NULL,
+  `rate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productid` (`productid`),
+  ADD KEY `userid` (`userid`);
+
