@@ -4,9 +4,11 @@ const passwordField = document.querySelector("#newPassword");
 const changePasswordButton = document.querySelector("#changePasswordButton");
 const userInfoAlert = document.querySelector("#userInfoAlert");
 const passwordChangeAlert = document.querySelector("#passwordChangeAlert");
+const purchaseDiv = document.querySelector("#purchaseDiv");
 
 document.addEventListener("DOMContentLoaded", function () {
   getUserInformation();
+  getUserPurchases();
 });
 
 function getUserInformation() {
@@ -57,6 +59,52 @@ const appendUserForm = (userData) => {
   </div>
 </div>
 <br>`;
+};
+
+function getUserPurchases() {
+  fetch("http://localhost/tech-zone/public/profile/getPurchases", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (purchases) {
+      appendUserPurchases(purchases);
+    })
+    .catch(function (error) {
+      purchaseDiv.innerHTML = `<h1>Something went wrong</h1>`;
+    });
+}
+
+const appendUserPurchases = (purchases) => {
+  html = `<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Product Price</th>
+      <th scope="col">Product quantity</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  `;
+  for (purchase of purchases.data) {
+    html += `<tr scope="row">
+    <th scope="row">${purchase.transactionID}</th>
+    <td>${purchase.productName}</td>
+    <td>${purchase.productPrice}</td>
+    <td>${purchase.productQuantity}</td>
+    <td>${purchase.totalPrice}</td>
+    </tr>`;
+  }
+
+  html += `</tbody>
+   </table>`;
+  purchaseDiv.innerHTML = html;
 };
 
 passwordField.addEventListener("keyup", () => {

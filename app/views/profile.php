@@ -7,7 +7,7 @@
 
     <div>
         <h1>Profile Information</h1>
-        <h2>Check your user information and login credentials. Modify them as you wish</h2>
+        <h2>Check your user information and login credentials. Modify them as you wish.</h2>
     </div>
     <div class="d-flex flex-row justify-content-center">
         <div class="container-sm w-10 border border-warning rounded-1">
@@ -36,7 +36,16 @@
             </form>
         </div>
     </div>
-    <script src="<?= ROOT ?>assets/js/profile.js"></script>
-</body>
 
-</html>
+    <br>
+
+    <section>
+        <div class="d-flex flex-row justify-content-center">
+            <h1>Purchases</h1>
+        </div>
+        <div class="d-flex flex-row justify-content-center" style="margin:0px 100px" id="purchaseDiv">
+
+        </div>
+    </section>
+    <script src="<?= ROOT ?>assets/js/profile.js"></script>
+    <?php $this->view('footer'); ?>

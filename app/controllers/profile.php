@@ -7,6 +7,9 @@ class Profile extends Controller
         $user_data = $user->check_login();
         if (!is_bool($user_data)) {
             $data['user_data'] = $user_data;
+        } else {
+            header("Location:" . ROOT . "login");
+            die;
         }
         $category = $this->load_model("Category");
         $cats = $category->getCategories();
@@ -84,6 +87,27 @@ class Profile extends Controller
             $arr['message_type'] = "success";
             $arr['data'] = $data;
             echo json_encode($arr);
+        }
+    }
+
+    public function getPurchases()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            $user = $this->load_model("userInfo");
+            $user_data = $user->check_login();
+            if (!is_bool($user_data)) {
+                $product = $this->load_model("productinfo");
+                $data = $product->fetchAllPurchases($user_data->userID);
+                $arr['message'] = "Purchases fetched successfully";
+                $arr['message_type'] = "success";
+                $arr['data'] = $data;
+                echo json_encode($arr);
+            } else {
+                $arr['message'] = "Purchases could not be fetched";
+                $arr['message_type'] = "error";
+                $arr['data'] = "";
+                echo json_encode($arr);
+            }
         }
     }
 }

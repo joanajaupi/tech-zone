@@ -57,3 +57,6 @@ ALTER TABLE `reviews`
   ADD KEY `productid` (`productid`),
   ADD KEY `userid` (`userid`);
 
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+

@@ -120,4 +120,13 @@ class productinfo
         $query = "UPDATE product SET productQuantity = productQuantity - :productQuantity WHERE productID = :productID";
         $result = $db->write($query, $arr);
     }
+
+    public function fetchAllPurchases($userID)
+    {
+        $db = Database::instance();
+        $arr['userID'] = $userID;
+        $query = "SELECT transactionID, productName, productPrice, productQuantity,totalPrice FROM purchase WHERE userID = :userID";
+        $result = $db->read($query, $arr);
+        return $result;
+    }
 }
