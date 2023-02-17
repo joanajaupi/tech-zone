@@ -72,7 +72,8 @@ function getUserPurchases() {
       return response.json();
     })
     .then(function (purchases) {
-      if (purchases.data.length === 0) {
+      console.log(purchases);
+      if (purchases.data.length !== 0) {
         appendUserPurchases(purchases);
       } else {
         purchaseDiv.innerHTML = `<h1>You have not made any purchases yet</h1>`;
