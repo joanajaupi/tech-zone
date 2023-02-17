@@ -72,7 +72,11 @@ function getUserPurchases() {
       return response.json();
     })
     .then(function (purchases) {
-      appendUserPurchases(purchases);
+      if (purchases.data.length === 0) {
+        appendUserPurchases(purchases);
+      } else {
+        purchaseDiv.innerHTML = `<h1>You have not made any purchases yet</h1>`;
+      }
     })
     .catch(function (error) {
       purchaseDiv.innerHTML = `<h1>Something went wrong</h1>`;
