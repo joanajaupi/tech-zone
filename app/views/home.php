@@ -121,9 +121,8 @@
           </div>
           <div class="col-md-3">
             <p class="text-center">Laptops</p>
-            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vit
-              ae semper nisl nunc nec nisl. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae semper nisl nunc nec nisl.</p>
-            <button class="btn btn-primary btn-block" id="discover">Discover More</button>
+            <p class="text-center">Find the perfect laptop for all your computing needs! Our selection of laptops includes models with different sizes, styles, and specifications, so you can choose the one that suits you best. Whether you need a lightweight laptop for work, a powerful machine for gaming, or a versatile device for entertainment, we've got you covered.</p>
+            <a href="<?= ROOT ?>allproducts" class="btn btn-primary btn-block" id="discover">Discover all products</a>
           </div>
         </div>
       </div>
@@ -132,10 +131,11 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-3">
-            <p class="text-center">Laptops</p>
-            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vit
-              ae semper nisl nunc nec nisl. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae semper nisl nunc nec nisl.</p>
-            <button class="btn btn-primary btn-block" id="discover">Discover more</button>
+            <p class="text-center">Phones</p>
+            <p class="text-center">Stay connected and stay on top of your daily tasks with our selection of smartphones. Our collection includes the latest and greatest devices from top brands like Apple, Samsung, Google, and more.
+
+              From high-end flagships to affordable mid-range options, our smartphones are designed to meet a variety of needs and budgets. With powerful processors, stunning displays, and long-lasting batteries, our phones let you stay connected, entertained, and productive all day long. </p>
+            <a href="<?= ROOT ?>allproducts" class="btn btn-primary btn-block" id="discover">Discover all products</a>
           </div>
           <div class="col-md-3" id="img-2">
             <img src="<?php echo ROOT; ?>assets/images/discover2.jpg" alt="" class="img-fluid">
