@@ -29,7 +29,7 @@
 <body>
     <?php $this->view("navbar", $data); ?>
     <section>
-        <div class="container px4 px-lg-5" id="productDiv">
+        <div class="container" id="productDiv">
         </div>
         <div class="writeAReview d-none">
             <h3>Write a review</h3>
