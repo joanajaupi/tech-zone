@@ -193,7 +193,7 @@
             <a href="https://github.com/ProfessorGustavi">
               <i class="fa fa-github"></i>
             </a>
-            <a href="https://www.facebook.com" target="_blank">
+            <a href="https://al.linkedin.com/in/kevin-tenolli-59357415a" target="_blank">
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
