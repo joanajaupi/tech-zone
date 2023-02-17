@@ -76,3 +76,6 @@ INSERT INTO `product` (`productID`, `productName`, `productDescription`, `produc
 (70, 'Assus Rog', 'Laptop ASUS ROG Strix SCAR 18 (2023) G834, 18\", Intel Core i9, 32GB RAM, 2x 1TB SSD, NVIDIA GeForce RTX 4090, i zi', 4000, 5, 1, 'assusrog.jpg'),
 (71, 'Laptop Lenovo NB Legion ', 'Laptop Lenovo NB Legion 5 15IAH7H, 15.6\", Intel Core I7-12700H, 2x 16GB RAM, 2x 1TB SSD, NVIDIA GeForce RTX 3070 8GBG DDR6', 2000, 10, 1, 'legion.jpg');
 COMMIT;
+
+Alter table product add CONSTRAINT const
+foreign key (productCategoryID) REFERENCES category(categoryID) on delete cascade
