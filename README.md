@@ -1,2 +1,9 @@
 # tech-zone
-cen-311 project. A simple website using HTML, CSS, JavaScript, PHP and MySQL
+cen-311 project.
+A simple website using HTML, CSS, JavaScript, PHP and MySQL
+
+
+
+Members: 
+    - Kevin Tenolli
+    - Joana Jaupi

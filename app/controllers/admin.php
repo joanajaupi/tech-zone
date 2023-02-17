@@ -10,7 +10,10 @@ class Admin extends Controller
             $data['user_data'] = $user_data;
         }
         $data['page_title'] = "Dashboard";
-        $this->view("admin", $data);
+        if ($user_data->admin == 1)
+            $this->view("admin", $data);
+        else
+            header("Location:" . ROOT . "home");
     }
 
     public function categories()
@@ -21,52 +24,69 @@ class Admin extends Controller
             $data['user_data'] = $user_data;
         }
         $data['page_title'] = "Categories";
-        $this->view("categories", $data);
-        
+        if ($user_data->admin == 1)
+            $this->view("categories", $data);
+        else
+            header("Location:" . ROOT . "home");
     }
 
-    public function products($params = []){
+    public function products($params = [])
+    {
 
-        if(empty($params)){
+        if (empty($params)) {
             $user = $this->load_model("userInfo");
             $user_data = $user->check_login([1]);
             if (is_object($user_data)) {
                 $data['user_data'] = $user_data;
             }
             $data['page_title'] = "Products";
-            $this->view("admin-products", $data);
-        }else{
-            
+            if ($user_data->admin == 1)
+                $this->view("admin-products", $data);
+            else
+                header("Location:" . ROOT . "home");
+        } else {
+
             //check if parameter is create edit or delete
-            if($params == "create"){
+            if ($params == "create") {
                 $user = $this->load_model("userInfo");
                 $user_data = $user->check_login([1]);
                 if (is_object($user_data)) {
                     $data['user_data'] = $user_data;
                 }
                 $data['page_title'] = "Create Product";
-                $this->view("product-create", $data);
+                if ($user_data->admin == 1)
+                    $this->view("product-create", $data);
+                else
+                    header("Location:" . ROOT . "home");
+            }
         }
     }
-}
 
-    public function users(){
+    public function users()
+    {
         $user = $this->load_model("userInfo");
         $user_data = $user->check_login([1]);
         if (is_object($user_data)) {
             $data['user_data'] = $user_data;
         }
         $data['page_title'] = "Users";
-        $this->view("admin-users", $data);
+        if ($user_data->admin == 1)
+            $this->view("admin-users", $data);
+        else
+            header("Location:" . ROOT . "home");
     }
 
-    public function orders(){
+    public function orders()
+    {
         $user = $this->load_model("userInfo");
         $user_data = $user->check_login([1]);
         if (is_object($user_data)) {
             $data['user_data'] = $user_data;
         }
         $data['page_title'] = "Purchases";
-        $this->view("admin-orders", $data);
+        if ($user_data->admin == 1)
+            $this->view("admin-orders", $data);
+        else
+            header("Location:" . ROOT . "home");
     }
 }
