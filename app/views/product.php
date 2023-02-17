@@ -31,7 +31,7 @@
     <section>
         <div class="container px4 px-lg-5" id="productDiv">
         </div>
-        <div class="writeAReview">
+        <div class="writeAReview d-none">
             <h3>Write a review</h3>
             <form method="POST">
                 <div class="mb-3">

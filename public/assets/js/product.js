@@ -2,11 +2,11 @@ let productID;
 let product_Quantity;
 const productDiv = document.querySelector("#productDiv");
 let purchaseButton = null;
+const writeAReview = document.querySelector(".writeAReview");
 
 document.addEventListener("DOMContentLoaded", function () {
   productID = getProductID();
   getProduct(productID);
-  showReviews(productID);
 });
 
 function getProductID() {
@@ -26,6 +26,8 @@ function getProduct(productID) {
     })
     .then(function (product) {
       if (product.data.length > 0) {
+        writeAReview.classList.remove("d-none");
+        showReviews(productID);
         populate(product.data[0]);
         purchaseButton = document.querySelector("#purchaseButton");
         purchaseButton.addEventListener("click", () => purchaseItem());

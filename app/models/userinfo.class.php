@@ -35,7 +35,7 @@ class userInfo
         if (strlen($password) < 8) {
             $this->error .= "Password too short ";
         }
-        if(!preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)){
+        if (!preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)) {
             $this->error .= "Password must contain at least one uppercase letter and one number<br>";
         }
         //password validation 
@@ -146,19 +146,19 @@ class userInfo
         $password = trim(filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $db = Database::instance();
         $data = array();
-        if(strlen($password) < 8 || !preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)){
+        if (strlen($password) < 8 || !preg_match("/^(?=.*\d)(?=.*[A-Z]).{8,}$/", $password)) {
             echo "<script>alert('Password must contain at least one uppercase letter and one number')</script>";
             return false;
-        }else{
-        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-        $data['userID'] = $id;
-        $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
-        $result = $db->write($query, $data);
-        if ($result) {
-            return true;
+        } else {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+            $data['userID'] = $id;
+            $query = "UPDATE userInfo SET password=:password WHERE userID=:userID";
+            $result = $db->write($query, $data);
+            if ($result) {
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
     }
 
     public function updateInformation($name, $surname, $phone, $id)
@@ -186,21 +186,23 @@ class userInfo
         header("Location:" . ROOT . "home");
         die;
     }
-    public function getUsers(){
+    public function getUsers()
+    {
         $db = Database::instance();
         $query = "SELECT name, surname, email, admin FROM userInfo";
         $result = $db->read($query);
-        if(is_array($result)){
+        if (is_array($result)) {
             return $result;
         }
         return false;
     }
 
-    public function getNumberOfUsers(){
+    public function getNumberOfUsers()
+    {
         $db = Database::instance();
         $query = "SELECT COUNT(userID) as number FROM userInfo";
         $result = $db->read($query);
-        if(is_array($result)){
+        if (is_array($result)) {
             return $result[0]->number;
         }
         return false;
